@@ -4,7 +4,8 @@ namespace XGL
 {
     Main::Main():
     mPluginManager(*this),
-    mMeshManager(*this)
+    mMeshManager(*this),
+    mPipelineManager(*this)
     {
 
     }

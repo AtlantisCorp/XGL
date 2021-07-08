@@ -1,0 +1,3 @@
+[submodule "Plugins/OBJMeshLoader"]
+	path = Plugins/OBJMeshLoader
+	url = https://github.com/AtlantisCorp/XGL-OBJMeshLoader.git

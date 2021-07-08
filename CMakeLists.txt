@@ -13,6 +13,8 @@ if(APPLE)
   set(CMAKE_BUILD_WITH_INSTALL_RPATH ON)
 endif(APPLE)
 
+# XGL CORE LIBRARY HERE
+
 file(GLOB XGLFiles 
     ${CMAKE_CURRENT_SOURCE_DIR}/src/XGL/*.h 
     ${CMAKE_CURRENT_SOURCE_DIR}/src/XGL/*.cpp)
@@ -30,12 +32,20 @@ set_target_properties(XGL PROPERTIES
 find_package(GLM REQUIRED)
 target_include_directories(XGL PUBLIC ${GLM_INCLUDE_DIRS})
 
-add_executable(helloworld
-    ${CMAKE_CURRENT_SOURCE_DIR}/examples/helloworld.cpp 
-)
+# EXAMPLES TARGET HERE
 
-target_link_libraries(helloworld XGL)
-target_include_directories(helloworld PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
+link_libraries(XGL)
+
+add_executable(helloworld ${CMAKE_CURRENT_SOURCE_DIR}/examples/helloworld.cpp)
+
+# PLUGINS HERE
+
+set(XGL_PLUGINS_BINDIR ${CMAKE_CURRENT_SOURCE_DIR}/bin/Plugins)
+
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/Plugins/OBJMeshLoader)
+
+# INSTALL MAIN TARGETS
 
 install(
     TARGETS XGL helloworld

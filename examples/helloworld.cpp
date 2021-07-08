@@ -2,40 +2,6 @@
 #include <XGL/XGL.h>
 #include <iostream>
 
-namespace XGL
-{
-    struct OBJMeshLoader : public IMeshLoader, public Class < OBJMeshLoader >
-    {
-        std::shared_ptr < Mesh > load(const std::string& meshName, 
-                                      const std::string& filename,
-                                      const std::shared_ptr < IRenderer >& renderer)
-        {
-            return nullptr;
-        }
-
-        std::string name() const { return "OBJMeshLoader"; }
-    };
-}
-
-struct OBJMeshLoaderPlugin : public XGL::IPlugin
-{
-    const char* name() const { return "OBJMeshLoaderPlugin"; }
-
-    void inscribe(XGL::Main& mMain) {
-        mMain.meshLoaders().add(XGL::OBJMeshLoader::New());
-    }
-
-    void unscribe(XGL::Main& mMain) {
-        mMain.meshLoaders().remove(mMain.meshLoaders().findByName("OBJMeshLoader"));
-    }
-};
-
-extern "C" XGL::IPlugin* PluginMain(void)
-{
-    static OBJMeshLoaderPlugin plugin;
-    return &plugin;
-}
-
 int main(int argc, char** argv)
 {
     try
@@ -44,7 +10,6 @@ int main(int argc, char** argv)
 
         mMain.plugins().load("Plugins/libGlRenderer");
         mMain.plugins().load("Plugins/libOBJMeshLoader");
-        mMain.meshLoaders().add(XGL::OBJMeshLoader::New());
 
         auto renderer = mMain.renderers().first();
         renderer->initialize({});

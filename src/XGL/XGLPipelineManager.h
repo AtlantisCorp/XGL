@@ -12,6 +12,8 @@ namespace XGL
      */
     struct PipelineManager : public MainManager < Pipeline >
     {
+        using MainManager::MainManager;
+        
         //! @brief Returns the pipeline designated by an id, or null if not found.
         auto findById(size_t id) const { return this->find([id](auto& rhs){ return rhs->id() == id; }); }
     };
