@@ -49,6 +49,11 @@ namespace XGL
 
         //! @brief Creates a new IBuffer.
         virtual std::shared_ptr < IBuffer > createBuffer(BufferRole role, size_t size, const void* data = NULL) = 0;
+        
+        //! @brief Creates a new IBuffer and sets the data to given vector.
+        template < typename T > inline auto createBuffer(BufferRole role, const std::vector < T >& data) {
+            return createBuffer(role, data.size() * sizeof(T), &data[0]);
+        }
 
         //! @brief Creates a new IShader.
         virtual std::shared_ptr < IShader > createShader(ShaderType type, const std::string& filename, const std::string& entry = "main") = 0;
@@ -92,6 +97,8 @@ namespace XGL
         //! @brief Draws something from the bound vertex buffers and an index buffer.
         virtual void drawIndexedElements(const std::shared_ptr < IBuffer >& buffer, Elements::Type type, DrawMode mode, size_t first, size_t count, size_t firstInstance = 0, size_t numInstance = 1) = 0;
     };
+    
+    typedef std::shared_ptr < IRenderer > PIRenderer;
 }
 
 #endif // !__XGL_IRENDERER_H__

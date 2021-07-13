@@ -14,11 +14,15 @@
 #include <map>
 #include <any>
 #include <vector>
+#include <chrono>
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-volatile"
 
 #include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <glm/gtc/quaternion.hpp>
+#include <glm/gtx/quaternion.hpp>
 
 #pragma clang diagnostic pop
 

@@ -75,4 +75,16 @@ namespace XGL
         std::lock_guard l(mutex);
         mName = name;
     }
+    
+    AABB Mesh::boundingBox() const
+    {
+        std::lock_guard l(mutex);
+        return mBoundingBox;
+    }
+    
+    void Mesh::setBoundingBox(const AABB& box)
+    {
+        std::lock_guard l(mutex);
+        mBoundingBox = box;
+    }
 }

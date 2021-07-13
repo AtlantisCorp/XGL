@@ -5,6 +5,7 @@
 #include "XGLSubMesh.h"
 #include "XGLVertex.h"
 #include "XGLIdentifiable.h"
+#include "XGLAABB.h"
 
 namespace XGL
 {
@@ -30,6 +31,10 @@ namespace XGL
 
         //! @brief The mesh name.
         std::string mName;
+        
+        //! @brief An optional bounding box generally set when loading the
+        //! mesh, you can set it to anything you want but try to be consistent.
+        AABB mBoundingBox;
 
         //! @brief Mutex.
         mutable std::mutex mutex;
@@ -73,7 +78,15 @@ namespace XGL
 
         //! @brief Sets the mesh name.
         void setName(const std::string& name);
+        
+        //! @brief Returns the bounding box.
+        AABB boundingBox() const;
+        
+        //! @brief Sets the mesh bounding box.
+        void setBoundingBox(const AABB& box);
     };
+    
+    typedef std::shared_ptr < Mesh > PMesh;
 }
 
 #endif // !__XGL_MESH_H__

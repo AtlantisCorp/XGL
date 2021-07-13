@@ -33,6 +33,12 @@ namespace XGL
 
         //! @brief Sets the data in the buffer.
         virtual void setData(size_t size, const void* data = NULL) = 0;
+        
+        //! @brief Sets the data in the buffer to a vector of T.
+        template < typename T >
+        inline void setData(const std::vector < T >& data) {
+            setData(data.size() * sizeof(T), &data[0]);
+        }
     };
 }
 

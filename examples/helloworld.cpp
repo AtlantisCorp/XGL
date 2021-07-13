@@ -2,6 +2,11 @@
 #include <XGL/XGL.h>
 #include <iostream>
 
+namespace XGL
+{
+    
+}
+
 int main(int argc, char** argv)
 {
     try
@@ -22,7 +27,7 @@ int main(int argc, char** argv)
         });
 
         auto& window = *surface->window();
-
+        
         auto mesh = mMain.meshes().loadOrGet("Cube", "cube.obj", "OBJMeshLoader", renderer);
 
         auto vshader = renderer->createShader(XGL::ShaderType::Vertex, "shader.vert");
@@ -41,13 +46,24 @@ int main(int argc, char** argv)
         material->setValue("view", glm::mat4(), XGL::ShaderType::Vertex);
         material->setTexture("diffuse", diffuseTex, XGL::ShaderType::Fragment);
         mMain.materials().add(material);
-
+        
+        auto scene = XGL::Scene(mMain, { 1024, 256, 1024 });
+        
+        auto meshNode = scene.createMeshNode(mesh, { 4.0, 0.0, 4.0 });
+        auto materialNode = scene.createMaterialNode(material);
+        auto entityNode = scene.createEntityNode(meshNode, { materialNode });
+        scene.append(entityNode);
+        
+        glm::mat4 projection = glm::perspective(70.0f, 1024.0f/768.0f, 0.1f, 100.0f);
+        XGL::PCamera camera = XGL::Camera::New(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 0.0f, 1.0f));
+        
         surface->Render.add([&](XGL::ISurface& surface){
             surface.clearBuffers();
+            
+            XGL::Frustum frustum(projection, camera->matrix());
 
             pipeline->bind(renderer);
-            material->bind(renderer);
-            mesh->render(renderer);
+            scene.render(renderer, frustum);
 
             surface.swapBuffers();
         });

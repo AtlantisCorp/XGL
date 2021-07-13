@@ -60,6 +60,8 @@ namespace XGL
         //! @brief Changes the material name.
         void setName(const std::string& name);
     };
+    
+    typedef std::shared_ptr < Material > PMaterial;
 }
 
 #endif // !__XGL_MATERIAL_H__

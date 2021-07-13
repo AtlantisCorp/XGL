@@ -52,5 +52,14 @@ namespace XGL
 #include "XGLPipeline.h"
 #include "XGLPipelineManager.h"
 #include "XGLITextureLoader.h"
+#include "XGLSceneNode.h"
+#include "XGLFrustum.h"
+#include "XGLAABB.h"
+#include "XGLPositionable.h"
+#include "XGLMeshSceneNode.h"
+#include "XGLMaterialSceneNode.h"
+#include "XGLEntitySceneNode.h"
+#include "XGLScene.h"
+#include "XGLCamera.h"
 
 #endif // !__XGL_H__
