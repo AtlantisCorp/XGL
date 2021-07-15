@@ -58,14 +58,17 @@ int main(int argc, char** argv)
         XGL::PCamera camera = XGL::Camera::New(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 0.0f, 1.0f));
         
         surface->Render.add([&](XGL::ISurface& surface){
-            surface.clearBuffers();
+            XGL::RenderPass pass = surface.createRenderPass();
+            pass.colorAttachments[0].clearColor = { 0.2f, 0.4f, 0.6f, 1.0f };
+            
+            surface.begin(pass);
             
             XGL::Frustum frustum(projection, camera->matrix());
 
             pipeline->bind(renderer);
             scene.render(renderer, frustum);
 
-            surface.swapBuffers();
+            surface.end();
         });
 
         while (!window.isClosed())

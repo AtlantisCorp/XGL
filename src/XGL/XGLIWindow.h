@@ -98,6 +98,8 @@ namespace XGL
         //! @brief Updates the window.
         virtual void update() = 0;
     };
+    
+    typedef std::shared_ptr < IWindow > PIWindow;
 }
 
 #endif // !__XGL_IWINDOW_H__

@@ -61,5 +61,7 @@ namespace XGL
 #include "XGLEntitySceneNode.h"
 #include "XGLScene.h"
 #include "XGLCamera.h"
+#include "XGLIRenderTarget.h"
+#include "XGLRenderPass.h"
 
 #endif // !__XGL_H__

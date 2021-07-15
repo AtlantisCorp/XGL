@@ -7,6 +7,7 @@
 #include "XGLFrame.h"
 #include "XGLIWindow.h"
 #include "XGLIRenderObject.h"
+#include "XGLIRenderTarget.h"
 
 namespace XGL 
 {
@@ -25,7 +26,7 @@ namespace XGL
      *  IRenderer::createWindow(). 
      * 
      */
-    class ISurface : public IRenderObject
+    class ISurface : public IRenderTarget
     {
     public:
         //! @brief An event when the surface is resized.
@@ -36,7 +37,7 @@ namespace XGL
 
     public:
         //! @brief Constructs a new instance.
-        ISurface(IRenderer& renderer): IRenderObject(renderer) {}
+        ISurface(IRenderer& renderer): IRenderTarget(renderer) {}
 
         //! @brief Destructor.
         virtual ~ISurface() = default;
@@ -49,13 +50,9 @@ namespace XGL
 
         //! @brief Returns true if this surface owns the IWindow.
         virtual bool ownsWindow() const = 0;
-
-        //! @brief Clears the specified buffers.
-        virtual void clearBuffers(ClearBuffers buffers = ClearBuffers::All) = 0;
-
-        //! @brief Swaps the buffers in the swap chain.
-        virtual void swapBuffers() = 0;
     };
+    
+    typedef std::shared_ptr < ISurface > PISurface;
 }
 
 #endif // !__XGL_ISURFACE_H__

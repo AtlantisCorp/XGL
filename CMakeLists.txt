@@ -44,6 +44,7 @@ add_executable(helloworld ${CMAKE_CURRENT_SOURCE_DIR}/examples/helloworld.cpp)
 set(XGL_PLUGINS_BINDIR ${CMAKE_CURRENT_SOURCE_DIR}/bin/Plugins)
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/Plugins/OBJMeshLoader)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/Plugins/XGLMetalRenderer)
 
 # INSTALL MAIN TARGETS
 

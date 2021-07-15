@@ -1,3 +1,6 @@
 [submodule "Plugins/OBJMeshLoader"]
 	path = Plugins/OBJMeshLoader
 	url = https://github.com/AtlantisCorp/XGL-OBJMeshLoader.git
+[submodule "Plugins/XGLMetalRenderer"]
+	path = Plugins/XGLMetalRenderer
+	url = https://github.com/AtlantisCorp/XGL-MetalRenderer.git

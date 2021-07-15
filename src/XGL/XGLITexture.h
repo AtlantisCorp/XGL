@@ -55,6 +55,8 @@ namespace XGL
         //! @brief Sets the data into the texture.
         virtual void setData(PixelFormat format, const void* data) = 0;
     };
+    
+    typedef std::shared_ptr < ITexture > PITexture;
 }
 
 #endif // !__XGL_ITEXTURE_H__

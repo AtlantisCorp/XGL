@@ -40,6 +40,9 @@ namespace XGL
         /// @brief Initializes the IRenderer. The options can vary between different
         /// renderers. 
         virtual void initialize(const RendererInitArgs& options) = 0;
+        
+        //! @brief Returns true if the IRenderer is currently rendering something.
+        virtual bool isRendering() const = 0;
 
         //! @brief Creates a new ISurface from a IWindow.
         virtual std::shared_ptr < ISurface > createSurface(const std::shared_ptr < IWindow >& window) = 0;
